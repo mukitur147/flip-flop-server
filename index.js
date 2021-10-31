@@ -21,6 +21,14 @@ async function run(){
       const productCollection = database.collection('products');
       const orderCollection = database.collection('orders')
 
+    // add products 
+     app.post('/products', async(req,res)=>{
+         const product = req.body;
+         const result = await productCollection.insertOne(product);
+         res.json(result);
+     })
+
+
     //   get products api 
     app.get('/products', async(req,res)=>{
         const cursor = productCollection.find({});
